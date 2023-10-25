@@ -1,0 +1,8 @@
+docker compose up airflow-init
+
+docker compose down
+
+http://localhost:8090/home
+
+
+https://github.com/puckel/docker-airflow/tree/master

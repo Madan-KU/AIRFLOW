@@ -1,0 +1,85 @@
+version: '3.8'
+
+services:
+  postgres:
+    # PostgreSQL database service for Airflow
+    image: postgres:13
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    volumes:
+      - postgres-db-volume:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "airflow"]
+      interval: 10s
+      retries: 5
+      start_period: 5s
+    restart: always
+
+  redis:
+    # Redis message broker for CeleryExecutor
+    image: redis:latest
+    expose:
+      - 6379
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 30s
+      retries: 50
+      start_period: 30s
+    restart: always
+
+  airflow-webserver:
+    # Airflow web server
+    image: apache/airflow:2.7.2
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+      AIRFLOW__CORE__FERNET_KEY: 'your_fernet_key'
+      AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'false'
+      AIRFLOW__CORE__LOAD_EXAMPLES: 'true'
+      AIRFLOW__SCHEDULER__ENABLE_HEALTH_CHECK: 'true'
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+    ports:
+      - "8090:8080"  # Host port 8090 mapped to container port 8080
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: always
+    depends_on:
+      - redis  # Depends on the Redis service
+      - postgres  # Depends on the PostgreSQL service
+
+  airflow-scheduler:
+    # Airflow scheduler
+    image: apache/airflow:2.7.2
+    command: scheduler
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+    restart: always
+    depends_on:
+      - redis  # Depends on the Redis service
+      - postgres  # Depends on the PostgreSQL service
+
+  airflow-worker:
+    # Airflow Celery worker
+    image: apache/airflow:2.7.2
+    command: celery worker
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+      AIRFLOW__CELERY__BROKER_URL: redis://:@redis:6379/0
+    restart: always
+    depends_on:
+      - redis  # Depends on the Redis service
+      - postgres  # Depends on the PostgreSQL service
+
+volumes:
+  postgres-db-volume:
