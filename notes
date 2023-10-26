@@ -1,5 +1,7 @@
 docker compose up airflow-init
 
+docker-compose up -d
+
 docker compose down
 
 http://localhost:8090/home
