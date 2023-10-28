@@ -2345,3 +2345,24 @@ ModuleNotFoundError: No module named 'airflow.providers.microsoft.mssql'
 [2023-10-26T23:06:50.021+0000] {logging_mixin.py:151} INFO - [2023-10-26T23:06:50.021+0000] {dag.py:2941} INFO - Sync 1 DAGs
 [2023-10-26T23:06:50.040+0000] {logging_mixin.py:151} INFO - [2023-10-26T23:06:50.040+0000] {dag.py:3722} INFO - Setting next_dagrun for data_pipeline to 2023-10-26T22:26:07.972651+00:00, run_after=2023-10-27T22:26:07.972651+00:00
 [2023-10-26T23:06:50.057+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/Example.py took 0.078 seconds
+[2023-10-26T23:07:20.125+0000] {processor.py:157} INFO - Started process (PID=1201) to work on /opt/airflow/dags/Example.py
+[2023-10-26T23:07:20.126+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/Example.py for tasks to queue
+[2023-10-26T23:07:20.128+0000] {logging_mixin.py:151} INFO - [2023-10-26T23:07:20.128+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/Example.py
+[2023-10-26T23:07:20.137+0000] {processor.py:839} INFO - DAG(s) dict_keys(['data_pipeline']) retrieved from /opt/airflow/dags/Example.py
+[2023-10-26T23:07:20.152+0000] {logging_mixin.py:151} INFO - [2023-10-26T23:07:20.152+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2023-10-26T23:07:20.163+0000] {logging_mixin.py:151} INFO - [2023-10-26T23:07:20.163+0000] {dag.py:3722} INFO - Setting next_dagrun for data_pipeline to 2023-10-26T22:26:07.972651+00:00, run_after=2023-10-27T22:26:07.972651+00:00
+[2023-10-26T23:07:20.176+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/Example.py took 0.053 seconds
+[2023-10-26T23:07:50.299+0000] {processor.py:157} INFO - Started process (PID=1209) to work on /opt/airflow/dags/Example.py
+[2023-10-26T23:07:50.300+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/Example.py for tasks to queue
+[2023-10-26T23:07:50.301+0000] {logging_mixin.py:151} INFO - [2023-10-26T23:07:50.301+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/Example.py
+[2023-10-26T23:07:50.310+0000] {processor.py:839} INFO - DAG(s) dict_keys(['data_pipeline']) retrieved from /opt/airflow/dags/Example.py
+[2023-10-26T23:07:50.325+0000] {logging_mixin.py:151} INFO - [2023-10-26T23:07:50.325+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2023-10-26T23:07:50.337+0000] {logging_mixin.py:151} INFO - [2023-10-26T23:07:50.337+0000] {dag.py:3722} INFO - Setting next_dagrun for data_pipeline to 2023-10-26T22:26:07.972651+00:00, run_after=2023-10-27T22:26:07.972651+00:00
+[2023-10-26T23:07:50.348+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/Example.py took 0.051 seconds
+[2023-10-26T23:08:20.432+0000] {processor.py:157} INFO - Started process (PID=1217) to work on /opt/airflow/dags/Example.py
+[2023-10-26T23:08:20.433+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/Example.py for tasks to queue
+[2023-10-26T23:08:20.435+0000] {logging_mixin.py:151} INFO - [2023-10-26T23:08:20.435+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/Example.py
+[2023-10-26T23:08:20.444+0000] {processor.py:839} INFO - DAG(s) dict_keys(['data_pipeline']) retrieved from /opt/airflow/dags/Example.py
+[2023-10-26T23:08:20.460+0000] {logging_mixin.py:151} INFO - [2023-10-26T23:08:20.460+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2023-10-26T23:08:20.472+0000] {logging_mixin.py:151} INFO - [2023-10-26T23:08:20.472+0000] {dag.py:3722} INFO - Setting next_dagrun for data_pipeline to 2023-10-26T22:26:07.972651+00:00, run_after=2023-10-27T22:26:07.972651+00:00
+[2023-10-26T23:08:20.485+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/Example.py took 0.055 seconds
